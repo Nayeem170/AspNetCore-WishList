@@ -34,9 +34,9 @@ namespace WishList.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int Id)
         {
-            Item item = _context.Items.Find(id);
+            Item item = _context.Items.Find(Id);
             _context.Items.Remove(item);
             _context.SaveChanges();
 
