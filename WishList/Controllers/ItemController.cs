@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
 using WishList.Models;
 
@@ -15,7 +16,7 @@ namespace WishList.Controllers
 
         public IActionResult Index()
         {
-            return View("Index", _context.Items);
+            return View("Index", _context.Items.ToList());
         }
 
         [HttpGet]
@@ -36,7 +37,7 @@ namespace WishList.Controllers
         [HttpDelete]
         public IActionResult Delete(int Id)
         {
-            Item item = _context.Items.Find(Id);
+            Item item = _context.Items.FirstOrDefault(e => e.Id == Id);
             _context.Items.Remove(item);
             _context.SaveChanges();
 
